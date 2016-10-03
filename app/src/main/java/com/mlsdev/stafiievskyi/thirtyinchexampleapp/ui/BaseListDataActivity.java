@@ -8,23 +8,25 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.R;
-import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.base.BasePresenter;
+import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.base.BaseListDataPresenter;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.base.BaseView;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.adapter.BaseAdapter;
 
 import net.grandcentrix.thirtyinch.TiActivity;
 
+import java.util.List;
+
 /**
  * Created by oleksandr on 03.10.16.
  */
 
-public abstract class BaseListDataActivity<P extends BasePresenter<T, V>, T, V extends BaseView<T>,
-        H extends RecyclerView.ViewHolder> extends TiActivity<P, V> {
+public abstract class BaseListDataActivity<P extends BaseListDataPresenter<T, V>, T, V extends BaseView<T>,
+        H extends RecyclerView.ViewHolder> extends TiActivity<P, V> implements BaseView<T> {
 
     protected ProgressBar pbProgress;
     protected TextView tvErrorMessage;
     protected RecyclerView rvData;
-    protected BaseAdapter adapter;
+    protected BaseAdapter<T, H> adapter;
 
 
     @Override
@@ -44,6 +46,26 @@ public abstract class BaseListDataActivity<P extends BasePresenter<T, V>, T, V e
         adapter = provideAdapter();
         rvData.setAdapter(adapter);
 
+    }
+
+    @Override
+    public void showData(List<T> data) {
+        adapter.setData(data);
+    }
+
+    @Override
+    public void showProgress(boolean isShow) {
+        pbProgress.setVisibility(isShow ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void showErrorView(String errorMessage) {
+        tvErrorMessage.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideErrorView() {
+        tvErrorMessage.setVisibility(View.GONE);
     }
 
     protected abstract int getLayoutID();

@@ -1,5 +1,7 @@
 package com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.base;
 
+import android.util.Log;
+
 import net.grandcentrix.thirtyinch.TiPresenter;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
 
@@ -12,7 +14,7 @@ import rx.Observer;
  * Created by oleksandr on 03.10.16.
  */
 
-public abstract class BasePresenter<T, V extends BaseView> extends TiPresenter<V> {
+public abstract class BaseListDataPresenter<T, V extends BaseView<T>> extends TiPresenter<V> {
 
     private RxTiPresenterSubscriptionHandler rxSubscriptionHelper = new RxTiPresenterSubscriptionHandler(this);
     private Observable<List<T>> listObservable;
@@ -40,6 +42,7 @@ public abstract class BasePresenter<T, V extends BaseView> extends TiPresenter<V
 
             @Override
             public void onError(Throwable e) {
+                Log.e("Error", e.getMessage());
                 getView().showProgress(false);
                 getView().showErrorView(e.getMessage());
             }
