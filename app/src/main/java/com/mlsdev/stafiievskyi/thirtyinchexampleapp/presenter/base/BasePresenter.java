@@ -1,7 +1,4 @@
-package com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter;
-
-import com.mlsdev.stafiievskyi.thirtyinchexampleapp.model.api.FakeApiManager;
-import com.mlsdev.stafiievskyi.thirtyinchexampleapp.model.dto.User;
+package com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.base;
 
 import net.grandcentrix.thirtyinch.TiPresenter;
 import net.grandcentrix.thirtyinch.rx.RxTiPresenterSubscriptionHandler;
@@ -10,29 +7,31 @@ import java.util.List;
 
 import rx.Observable;
 import rx.Observer;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by oleksandr on 03.10.16.
  */
 
-public class UsersPresenter extends TiPresenter<UsersView> {
+public abstract class BasePresenter<T, V extends BaseView> extends TiPresenter<V> {
 
     private RxTiPresenterSubscriptionHandler rxSubscriptionHelper = new RxTiPresenterSubscriptionHandler(this);
-    private Observable<List<User>> usersObservable;
+    private Observable<List<T>> usersObservable;
 
 
     @Override
     protected void onCreate() {
         super.onCreate();
-        usersObservable = FakeApiManager.getService().getAllUsers().subscribeOn(Schedulers.newThread());
+        usersObservable = provideObservable();
     }
+
+
+    public abstract Observable<List<T>> provideObservable();
 
 
     public void downloadData() {
         getView().showProgress(true);
         getView().hideErrorView();
-        rxSubscriptionHelper.manageSubscription(usersObservable.subscribe(new Observer<List<User>>() {
+        rxSubscriptionHelper.manageSubscription(usersObservable.subscribe(new Observer<List<T>>() {
             @Override
             public void onCompleted() {
                 getView().showProgress(false);
@@ -42,12 +41,12 @@ public class UsersPresenter extends TiPresenter<UsersView> {
             @Override
             public void onError(Throwable e) {
                 getView().showProgress(false);
-                getView().showError(e.getMessage());
+                getView().showErrorView(e.getMessage());
             }
 
             @Override
-            public void onNext(List<User> users) {
-                getView().showUsers(users);
+            public void onNext(List<T> data) {
+                getView().showData(data);
             }
         }));
     }

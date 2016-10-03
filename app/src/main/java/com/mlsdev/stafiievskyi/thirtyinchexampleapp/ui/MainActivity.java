@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.R;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.model.dto.User;
-import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.UsersPresenter;
-import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.UsersView;
+import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.impl.UsersPresenter;
+import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.view.UsersView;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.adapter.BaseAdapter;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.adapter.UsersAdapter;
 
@@ -52,7 +52,7 @@ public class MainActivity extends TiActivity<UsersPresenter, UsersView> implemen
     }
 
     @Override
-    public void showUsers(List<User> users) {
+    public void showData(List<User> users) {
         adapter.setData(users);
         tvErrorMessage.setVisibility(View.GONE);
     }
@@ -63,7 +63,7 @@ public class MainActivity extends TiActivity<UsersPresenter, UsersView> implemen
     }
 
     @Override
-    public void showError(String errorMessage) {
+    public void showErrorView(String errorMessage) {
         tvErrorMessage.setVisibility(View.VISIBLE);
     }
 
