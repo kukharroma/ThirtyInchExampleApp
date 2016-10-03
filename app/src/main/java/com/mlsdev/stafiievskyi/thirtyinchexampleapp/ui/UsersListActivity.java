@@ -1,12 +1,7 @@
 package com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.R;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.model.dto.User;
@@ -15,34 +10,18 @@ import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.view.UsersView;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.adapter.BaseAdapter;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.adapter.UsersAdapter;
 
-import net.grandcentrix.thirtyinch.TiActivity;
-
 import java.util.List;
 
-public class MainActivity extends TiActivity<UsersPresenter, UsersView> implements UsersView {
-
-    private RecyclerView rvData;
-    private BaseAdapter<User, UsersAdapter.UserViewHolder> adapter;
-    private ProgressBar pbProgress;
-    private TextView tvErrorMessage;
+public class UsersListActivity extends BaseListDataActivity<UsersPresenter, User, UsersView, UsersAdapter.UserViewHolder> implements UsersView {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        tvErrorMessage = (TextView) findViewById(R.id.tvError);
-        pbProgress = (ProgressBar) findViewById(R.id.pbProgress);
-        tvErrorMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getPresenter().downloadData();
-            }
-        });
-        rvData = (RecyclerView) findViewById(R.id.rvData);
-        rvData.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new UsersAdapter();
-        rvData.setAdapter(adapter);
+    protected int getLayoutID() {
+        return R.layout.activity_main;
+    }
 
+    @Override
+    protected BaseAdapter<User, UsersAdapter.UserViewHolder> provideAdapter() {
+        return new UsersAdapter();
     }
 
     @NonNull
