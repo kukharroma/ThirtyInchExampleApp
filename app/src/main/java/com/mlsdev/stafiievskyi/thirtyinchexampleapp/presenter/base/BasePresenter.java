@@ -15,13 +15,13 @@ import rx.Observer;
 public abstract class BasePresenter<T, V extends BaseView> extends TiPresenter<V> {
 
     private RxTiPresenterSubscriptionHandler rxSubscriptionHelper = new RxTiPresenterSubscriptionHandler(this);
-    private Observable<List<T>> usersObservable;
+    private Observable<List<T>> listObservable;
 
 
     @Override
     protected void onCreate() {
         super.onCreate();
-        usersObservable = provideObservable();
+        listObservable = provideObservable();
     }
 
 
@@ -31,7 +31,7 @@ public abstract class BasePresenter<T, V extends BaseView> extends TiPresenter<V
     public void downloadData() {
         getView().showProgress(true);
         getView().hideErrorView();
-        rxSubscriptionHelper.manageSubscription(usersObservable.subscribe(new Observer<List<T>>() {
+        rxSubscriptionHelper.manageSubscription(listObservable.subscribe(new Observer<List<T>>() {
             @Override
             public void onCompleted() {
                 getView().showProgress(false);
