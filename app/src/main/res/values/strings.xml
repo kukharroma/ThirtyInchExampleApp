@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ThirtyInchExampleApp</string>
+    <string name="error_retry">Something wrong :( Press to retry</string>
+</resources>
