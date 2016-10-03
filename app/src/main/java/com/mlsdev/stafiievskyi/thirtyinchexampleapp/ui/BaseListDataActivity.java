@@ -21,10 +21,10 @@ import net.grandcentrix.thirtyinch.TiActivity;
 public abstract class BaseListDataActivity<P extends BasePresenter<T, V>, T, V extends BaseView<T>,
         H extends RecyclerView.ViewHolder> extends TiActivity<P, V> {
 
-    ProgressBar pbProgress;
-    TextView tvErrorMessage;
-    RecyclerView rvData;
-    BaseAdapter adapter;
+    protected ProgressBar pbProgress;
+    protected TextView tvErrorMessage;
+    protected RecyclerView rvData;
+    protected BaseAdapter adapter;
 
 
     @Override
