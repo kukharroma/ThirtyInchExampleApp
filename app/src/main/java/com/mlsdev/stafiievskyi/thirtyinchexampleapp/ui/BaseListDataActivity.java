@@ -24,7 +24,7 @@ public abstract class BaseListDataActivity<P extends BasePresenter<T, V>, T, V e
     ProgressBar pbProgress;
     TextView tvErrorMessage;
     RecyclerView rvData;
-    BaseAdapter<T, H> adapter;
+    BaseAdapter adapter;
 
 
     @Override
