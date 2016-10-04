@@ -69,6 +69,8 @@ public abstract class BaseListDataActivity<P extends BaseListDataPresenter<T, V>
     @Override
     public void showData(List<T> data) {
         adapter.setData(data);
+        adapter.addData(data);
+        adapter.addData(data);
     }
 
     @Override

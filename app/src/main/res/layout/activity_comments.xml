@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:twowayview_layoutManager="SpannableGridLayoutManager"
-        app:twowayview_numColumns="4" />
+        app:twowayview_numColumns="5" />
 
     <ProgressBar
         android:id="@+id/pbProgress"

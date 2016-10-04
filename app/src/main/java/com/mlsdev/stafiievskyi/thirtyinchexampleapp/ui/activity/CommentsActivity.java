@@ -11,6 +11,7 @@ import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.view.CommentsView;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.adapter.BaseAdapter;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.adapter.CommentsAdapter;
 
+import org.lucasr.twowayview.TwoWayLayoutManager;
 import org.lucasr.twowayview.widget.SpannableGridLayoutManager;
 
 /**
@@ -32,7 +33,7 @@ public class CommentsActivity extends BaseListDataActivity<CommentsListDataPrese
 
     @Override
     protected RecyclerView.LayoutManager provideLayoutManager() {
-        return new SpannableGridLayoutManager(this);
+        return new SpannableGridLayoutManager(TwoWayLayoutManager.Orientation.VERTICAL, 3, 1);
     }
 
     @Override

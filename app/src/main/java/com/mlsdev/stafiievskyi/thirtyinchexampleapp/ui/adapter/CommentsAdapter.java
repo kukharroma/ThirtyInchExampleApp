@@ -40,11 +40,8 @@ public class CommentsAdapter extends BaseAdapter<Comment, CommentsAdapter.Commen
         final SpannableGridLayoutManager.LayoutParams lp =
                 (SpannableGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
 
-        final int span1 = (position == 0 || position == 3 ? 2 : 1);
-        final int span2 = (position == 0 ? 2 : (position == 3 ? 3 : 1));
-
-        final int colSpan = (span2);
-        final int rowSpan = (span1);
+        final int rowSpan = (position == 0 ? 2 : 1);
+        final int colSpan = (position == 0 ? 2 : 1);
 
         if (lp.rowSpan != rowSpan || lp.colSpan != colSpan) {
             lp.rowSpan = rowSpan;
