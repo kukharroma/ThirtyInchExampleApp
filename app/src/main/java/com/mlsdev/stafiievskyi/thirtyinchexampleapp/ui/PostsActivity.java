@@ -2,6 +2,8 @@ package com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.R;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.model.dto.Post;
@@ -30,6 +32,11 @@ public class PostsActivity extends BaseListDataActivity<PostsListDataPresenter, 
     @Override
     protected BaseAdapter<Post, PostsAdapter.PostViewHolder> provideAdapter() {
         return new PostsAdapter();
+    }
+
+    @Override
+    protected RecyclerView.LayoutManager provideLayoutManager() {
+        return new LinearLayoutManager(this);
     }
 
 

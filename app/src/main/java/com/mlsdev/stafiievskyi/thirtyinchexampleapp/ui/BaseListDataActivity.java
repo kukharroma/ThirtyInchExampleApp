@@ -60,7 +60,7 @@ public abstract class BaseListDataActivity<P extends BaseListDataPresenter<T, V>
                 getPresenter().downloadData();
             }
         });
-        rvData.setLayoutManager(new LinearLayoutManager(this));
+        rvData.setLayoutManager(provideLayoutManager());
         adapter = provideAdapter();
         rvData.setAdapter(adapter);
 
@@ -89,4 +89,6 @@ public abstract class BaseListDataActivity<P extends BaseListDataPresenter<T, V>
     protected abstract int getLayoutID();
 
     protected abstract BaseAdapter<T, H> provideAdapter();
+
+    protected abstract RecyclerView.LayoutManager provideLayoutManager();
 }

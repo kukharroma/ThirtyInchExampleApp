@@ -2,6 +2,8 @@ package com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.R;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.model.dto.User;
@@ -20,6 +22,11 @@ public class UsersListActivity extends BaseListDataActivity<UsersListDataPresent
     @Override
     protected BaseAdapter<User, UsersAdapter.UserViewHolder> provideAdapter() {
         return new UsersAdapter(this);
+    }
+
+    @Override
+    protected RecyclerView.LayoutManager provideLayoutManager() {
+        return new LinearLayoutManager(this);
     }
 
     @NonNull
