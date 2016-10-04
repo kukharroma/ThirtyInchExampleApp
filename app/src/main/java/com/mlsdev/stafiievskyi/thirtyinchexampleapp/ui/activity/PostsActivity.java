@@ -1,6 +1,5 @@
-package com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui;
+package com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.activity;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,8 +11,6 @@ import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.impl.PostsListData
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.view.PostsView;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.adapter.BaseAdapter;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.adapter.PostsAdapter;
-
-import java.util.List;
 
 /**
  * Created by oleksandr on 03.10.16.

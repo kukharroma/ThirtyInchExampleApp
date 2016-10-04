@@ -1,4 +1,4 @@
-package com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui;
+package com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
