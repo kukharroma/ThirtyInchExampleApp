@@ -19,6 +19,12 @@ import java.util.List;
 
 public class UsersAdapter extends BaseAdapter<User, UsersAdapter.UserViewHolder> {
 
+    private OnAdapterItemClickListener<User> listener;
+
+    public UsersAdapter(OnAdapterItemClickListener<User> listener) {
+        this.listener = listener;
+    }
+
     @Override
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
@@ -32,7 +38,14 @@ public class UsersAdapter extends BaseAdapter<User, UsersAdapter.UserViewHolder>
         holder.userName.setText(item.getUsername());
         holder.company.setText(item.getCompany().getName());
         holder.email.setText(item.getEmail());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemClick(item);
+            }
+        });
     }
+
 
     @NonNull
     @Override

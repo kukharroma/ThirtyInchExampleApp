@@ -11,6 +11,7 @@ import com.mlsdev.stafiievskyi.thirtyinchexampleapp.R;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.base.BaseListDataPresenter;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.base.BaseView;
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.adapter.BaseAdapter;
+import com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.adapter.OnAdapterItemClickListener;
 
 import net.grandcentrix.thirtyinch.TiActivity;
 
@@ -21,7 +22,7 @@ import java.util.List;
  */
 
 public abstract class BaseListDataActivity<P extends BaseListDataPresenter<T, V>, T, V extends BaseView<T>,
-        H extends RecyclerView.ViewHolder> extends TiActivity<P, V> implements BaseView<T> {
+        H extends RecyclerView.ViewHolder> extends TiActivity<P, V> implements BaseView<T>, OnAdapterItemClickListener<T> {
 
     protected ProgressBar pbProgress;
     protected TextView tvErrorMessage;

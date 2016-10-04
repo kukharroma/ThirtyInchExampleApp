@@ -1,5 +1,6 @@
 package com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.mlsdev.stafiievskyi.thirtyinchexampleapp.R;
@@ -18,12 +19,19 @@ public class UsersListActivity extends BaseListDataActivity<UsersListDataPresent
 
     @Override
     protected BaseAdapter<User, UsersAdapter.UserViewHolder> provideAdapter() {
-        return new UsersAdapter();
+        return new UsersAdapter(this);
     }
 
     @NonNull
     @Override
     public UsersListDataPresenter providePresenter() {
         return new UsersListDataPresenter();
+    }
+
+    @Override
+    public void onItemClick(User item) {
+        Intent intent = new Intent(this, PostsActivity.class);
+        intent.putExtra(PostsActivity.USER_EXTRA_KEY, item);
+        startActivity(intent);
     }
 }

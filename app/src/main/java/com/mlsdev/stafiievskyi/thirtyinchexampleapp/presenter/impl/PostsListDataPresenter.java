@@ -8,6 +8,8 @@ import com.mlsdev.stafiievskyi.thirtyinchexampleapp.presenter.view.PostsView;
 import java.util.List;
 
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by oleksandr on 03.10.16.
@@ -23,6 +25,6 @@ public class PostsListDataPresenter extends BaseListDataPresenter<Post, PostsVie
 
     @Override
     public Observable<List<Post>> provideObservable() {
-        return FakeApiManager.getService().getPostsByUserId(userId);
+        return FakeApiManager.getService().getPostsByUserId(userId).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
     }
 }

@@ -40,4 +40,9 @@ public class PostsActivity extends BaseListDataActivity<PostsListDataPresenter, 
             user = (User) getIntent().getSerializableExtra(USER_EXTRA_KEY);
         return new PostsListDataPresenter(String.valueOf(user.getId()));
     }
+
+    @Override
+    public void onItemClick(Post item) {
+
+    }
 }
