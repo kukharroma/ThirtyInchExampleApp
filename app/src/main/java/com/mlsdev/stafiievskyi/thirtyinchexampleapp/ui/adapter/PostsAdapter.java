@@ -19,6 +19,9 @@ import java.util.List;
 
 public class PostsAdapter extends BaseAdapter<Post, PostsAdapter.PostViewHolder> {
 
+    public PostsAdapter(OnAdapterItemClickListener<Post> listener) {
+        this.listener = listener;
+    }
 
     @NonNull
     @Override
@@ -38,9 +41,15 @@ public class PostsAdapter extends BaseAdapter<Post, PostsAdapter.PostViewHolder>
         final Post post = data.get(position);
         holder.body.setText(post.getBody());
         holder.title.setText(post.getTitle());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemClick(post);
+            }
+        });
     }
 
-   public static class PostViewHolder extends RecyclerView.ViewHolder {
+    public static class PostViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
         TextView body;

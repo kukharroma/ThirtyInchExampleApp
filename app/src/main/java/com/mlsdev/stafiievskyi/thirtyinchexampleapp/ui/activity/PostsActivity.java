@@ -1,5 +1,6 @@
 package com.mlsdev.stafiievskyi.thirtyinchexampleapp.ui.activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,7 +29,7 @@ public class PostsActivity extends BaseListDataActivity<PostsListDataPresenter, 
 
     @Override
     protected BaseAdapter<Post, PostsAdapter.PostViewHolder> provideAdapter() {
-        return new PostsAdapter();
+        return new PostsAdapter(this);
     }
 
     @Override
@@ -47,6 +48,8 @@ public class PostsActivity extends BaseListDataActivity<PostsListDataPresenter, 
 
     @Override
     public void onItemClick(Post item) {
-
+        Intent intent = new Intent(this, CommentsActivity.class);
+        intent.putExtra(CommentsActivity.POST_ID_EXTRA, item);
+        startActivity(intent);
     }
 }
