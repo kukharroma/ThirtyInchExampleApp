@@ -19,8 +19,6 @@ import java.util.List;
 
 public class UsersAdapter extends BaseAdapter<User, UsersAdapter.UserViewHolder> {
 
-    private OnAdapterItemClickListener<User> listener;
-
     public UsersAdapter(OnAdapterItemClickListener<User> listener) {
         this.listener = listener;
     }

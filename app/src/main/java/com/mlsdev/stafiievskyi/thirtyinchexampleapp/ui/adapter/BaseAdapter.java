@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class BaseAdapter<T, H extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<H> {
     protected List<T> data;
-
+    OnAdapterItemClickListener<T> listener;
 
     BaseAdapter() {
         data = provideListType();
