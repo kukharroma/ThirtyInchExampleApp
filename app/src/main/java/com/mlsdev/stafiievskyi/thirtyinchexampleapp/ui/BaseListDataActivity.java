@@ -35,13 +35,30 @@ public abstract class BaseListDataActivity<P extends BaseListDataPresenter<T, V>
         setContentView(getLayoutID());
         tvErrorMessage = (TextView) findViewById(R.id.tvError);
         pbProgress = (ProgressBar) findViewById(R.id.pbProgress);
+        rvData = (RecyclerView) findViewById(R.id.rvData);
+        if (pbProgress == null) {
+            throw new NullPointerException(
+                    "Loading view is null! Have you specified a loading view in your layout xml file?"
+                            + " You have to give your loading View the id R.id.pbProgress");
+        }
+
+        if (rvData == null) {
+            throw new NullPointerException(
+                    "Content view is null! Have you specified a content view in your layout xml file?"
+                            + " You have to give your content View the id R.id.rvData");
+        }
+
+        if (tvErrorMessage == null) {
+            throw new NullPointerException(
+                    "Error view is null! Have you specified a content view in your layout xml file?"
+                            + " You have to give your error View the id R.id.tvError");
+        }
         tvErrorMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getPresenter().downloadData();
             }
         });
-        rvData = (RecyclerView) findViewById(R.id.rvData);
         rvData.setLayoutManager(new LinearLayoutManager(this));
         adapter = provideAdapter();
         rvData.setAdapter(adapter);

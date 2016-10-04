@@ -17,16 +17,10 @@ import java.util.List;
  * Created by oleksandr on 03.10.16.
  */
 
-public class PostsActivity extends BaseListDataActivity<PostsListDataPresenter, Post, PostsView, PostsAdapter.PostViewHolder> implements PostsView {
+public class PostsActivity extends BaseListDataActivity<PostsListDataPresenter, Post, PostsView, PostsAdapter.PostViewHolder> {
     public static final String USER_EXTRA_KEY = "user_extra_key";
 
     private User user;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     protected int getLayoutID() {
@@ -45,10 +39,5 @@ public class PostsActivity extends BaseListDataActivity<PostsListDataPresenter, 
         if (user == null)
             user = (User) getIntent().getSerializableExtra(USER_EXTRA_KEY);
         return new PostsListDataPresenter(String.valueOf(user.getId()));
-    }
-
-    @Override
-    public void showData(List<Post> data) {
-
     }
 }
